@@ -170,7 +170,7 @@ class Migration(migrations.Migration):
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
         migrations.CreateModel(
-            name='Assignment',
+            name='Collaborate',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('location', models.CharField(max_length=255, verbose_name='Location')),
@@ -180,8 +180,8 @@ class Migration(migrations.Migration):
                 ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='hrms.employee', verbose_name='Employee')),
             ],
             options={
-                'verbose_name': 'Assignment',
-                'verbose_name_plural': 'Assignments',
+                'verbose_name': 'Collaborate',
+                'verbose_name_plural': 'Collaborates',
             },
         ),
     ]

@@ -350,7 +350,7 @@ CodeMirror.defineMode("coffeescript", function(conf, parserConf) {
 });
 
 // IANA registered media type
-// https://www.iana.org/assignments/media-types/
+// https://www.iana.org/Collaborates/media-types/
 CodeMirror.defineMIME("application/vnd.coffeescript", "coffeescript");
 
 CodeMirror.defineMIME("text/x-coffeescript", "coffeescript");

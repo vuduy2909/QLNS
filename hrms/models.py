@@ -70,6 +70,7 @@ class EmployeeType(models.Model):
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     employee_id = models.CharField(max_length=10, unique=True, verbose_name="Employee ID")
+    displayname = models.CharField(max_length=100, verbose_name="Full Name", default="Unnamed")
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, verbose_name="Department")
     position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, verbose_name="Position")
     education_level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True, verbose_name="Education Level")
@@ -85,7 +86,7 @@ class Employee(models.Model):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name="Avatar")
 
     def __str__(self):
-        return f"{self.employee_id} - {self.user.get_full_name()}"
+        return self.displayname
 
     class Meta:
         verbose_name = "Employee"
@@ -116,19 +117,22 @@ class EmployeeGroup(models.Model):
         verbose_name = "Employee Group"
         verbose_name_plural = "Employee Groups"
 
-class Assignment(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Employee")
+class Collaborate(models.Model):
+    employees = models.ManyToManyField(Employee, verbose_name="Employees")  # Đổi từ ForeignKey thành ManyToManyField
     location = models.CharField(max_length=255, verbose_name="Location")
     start_date = models.DateField(verbose_name="Start Date")
     end_date = models.DateField(verbose_name="End Date")
     description = models.TextField(blank=True, null=True, verbose_name="Description")
 
     def __str__(self):
-        return f"{self.employee.user.get_full_name()} - {self.location}"
+        return f"{self.location} ({self.start_date} - {self.end_date})"
+
+
+
 
     class Meta:
-        verbose_name = "Assignment"
-        verbose_name_plural = "Assignments"
+        verbose_name = "Collaborate"
+        verbose_name_plural = "Collaborates"
 
 class RewardPenalty(models.Model):
     TYPE_CHOICES = (

@@ -7512,7 +7512,7 @@ var FullCalendar = (function (exports) {
         function CalendarDataProvider(props) {
             var _this = _super.call(this, props) || this;
             _this.handleData = function (data) {
-                if (!_this.dataManager) { // still within initial run, before assignment in constructor
+                if (!_this.dataManager) { // still within initial run, before Collaborate in constructor
                     // eslint-disable-next-line react/no-direct-mutation-state
                     _this.state = data; // can't use setState yet
                 }

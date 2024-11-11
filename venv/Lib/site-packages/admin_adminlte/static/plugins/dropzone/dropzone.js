@@ -1387,7 +1387,7 @@ var isForced = __webpack_require__(4705);
   options.forced      - export even if the native feature is available
   options.bind        - bind methods to the target, required for the `pure` version
   options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
-  options.unsafe      - use the simple assignment of property instead of delete + defineProperty
+  options.unsafe      - use the simple Collaborate of property instead of delete + defineProperty
   options.sham        - add a flag to not completely full polyfills
   options.enumerable  - export as enumerable property
   options.noTargetGet - prevent calling a getter on target

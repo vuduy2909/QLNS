@@ -1390,7 +1390,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				"<select disabled='disabled'><option/></select>";
 
 			// Support: Windows 8 Native Apps
-			// The type and name attributes are restricted during .innerHTML assignment
+			// The type and name attributes are restricted during .innerHTML Collaborate
 			var input = document.createElement( "input" );
 			input.setAttribute( "type", "hidden" );
 			el.appendChild( input ).setAttribute( "name", "D" );
@@ -2909,7 +2909,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 	return results;
 };
 
-// One-time assignments
+// One-time Collaborates
 
 // Sort stability
 support.sortStable = expando.split( "" ).sort( sortOrder ).join( "" ) === expando;
@@ -4256,7 +4256,7 @@ Data.prototype = {
 			if ( acceptData( owner ) ) {
 
 				// If it is a node unlikely to be stringify-ed or looped over
-				// use plain assignment
+				// use plain Collaborate
 				if ( owner.nodeType ) {
 					owner[ this.expando ] = value;
 

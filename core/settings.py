@@ -180,3 +180,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+DATE_INPUT_FORMATS = ['%m/%d/%Y'] 

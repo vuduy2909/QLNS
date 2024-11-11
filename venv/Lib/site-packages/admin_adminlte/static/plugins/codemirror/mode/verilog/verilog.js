@@ -371,21 +371,21 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
       curKeyword = null;
       var style = (state.tokenize || tokenBase)(stream, state);
       if (style == "comment" || style == "meta" || style == "variable") {
-        if (((curPunc === "=") || (curPunc === "<=")) && !isInsideScopeKind(ctx, "assignment")) {
-          // '<=' could be nonblocking assignment or lessthan-equals (which shouldn't cause indent)
-          //      Search through the context to see if we are already in an assignment.
+        if (((curPunc === "=") || (curPunc === "<=")) && !isInsideScopeKind(ctx, "Collaborate")) {
+          // '<=' could be nonblocking Collaborate or lessthan-equals (which shouldn't cause indent)
+          //      Search through the context to see if we are already in an Collaborate.
           // '=' could be inside port declaration with comma or ')' afterward, or inside for(;;) block.
-          pushContext(state, stream.column() + curPunc.length, "assignment", "assignment");
+          pushContext(state, stream.column() + curPunc.length, "Collaborate", "Collaborate");
           if (ctx.align == null) ctx.align = true;
         }
         return style;
       }
       if (ctx.align == null) ctx.align = true;
 
-      var isClosingAssignment = ctx.type == "assignment" &&
+      var isClosingCollaborate = ctx.type == "Collaborate" &&
         closingBracket.test(curPunc) && ctx.prev && ctx.prev.type === curPunc;
-      if (curPunc == ctx.type || isClosingAssignment) {
-        if (isClosingAssignment) {
+      if (curPunc == ctx.type || isClosingCollaborate) {
+        if (isClosingCollaborate) {
           ctx = popContext(state);
         }
         ctx = popContext(state);
@@ -393,7 +393,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
           // Handle closing macros, assuming they could have a semicolon or begin/end block inside.
           if (ctx && (ctx.type === "macro")) {
             ctx = popContext(state);
-            while (ctx && (ctx.type == "statement" || ctx.type == "assignment")) ctx = popContext(state);
+            while (ctx && (ctx.type == "statement" || ctx.type == "Collaborate")) ctx = popContext(state);
           }
         } else if (curPunc == "}") {
           // Handle closing statements like constraint block: "foreach () {}" which
@@ -402,10 +402,10 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
             while (ctx && (ctx.type == "statement")) ctx = popContext(state);
           }
         }
-      } else if (((curPunc == ";" || curPunc == ",") && (ctx.type == "statement" || ctx.type == "assignment")) ||
+      } else if (((curPunc == ";" || curPunc == ",") && (ctx.type == "statement" || ctx.type == "Collaborate")) ||
                (ctx.type && isClosing(curKeyword, ctx.type))) {
         ctx = popContext(state);
-        while (ctx && (ctx.type == "statement" || ctx.type == "assignment")) ctx = popContext(state);
+        while (ctx && (ctx.type == "statement" || ctx.type == "Collaborate")) ctx = popContext(state);
       } else if (curPunc == "{") {
         pushContext(state, stream.column(), "}");
       } else if (curPunc == "[") {
@@ -466,7 +466,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
         return state.compilerDirectiveIndented;
       }
       if (ctx.type == "statement") return ctx.indented + (firstChar == "{" ? 0 : statementIndentUnit);
-      else if ((closingBracket.test(ctx.type) || ctx.type == "assignment")
+      else if ((closingBracket.test(ctx.type) || ctx.type == "Collaborate")
         && ctx.align && !dontAlignCalls) return ctx.column + (closing ? 0 : 1);
       else if (ctx.type == ")" && !closing) return ctx.indented + statementIndentUnit;
       else return ctx.indented + (closing ? 0 : indentUnit);

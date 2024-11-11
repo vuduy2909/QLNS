@@ -149,7 +149,7 @@ CodeMirror.defineMode("xquery", function() {
     else if(ch === "$") {
       return chain(stream, state, tokenVariable);
     }
-    // assignment
+    // Collaborate
     else if(ch ===":" && stream.eat("=")) {
       return "keyword";
     }

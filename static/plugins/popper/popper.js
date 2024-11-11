@@ -1753,7 +1753,7 @@ function preventOverflow(data, options) {
   // resets the popper's position so that the document size can be calculated excluding
   // the size of the popper element itself
   const transformProp = getSupportedPropertyName('transform');
-  const popperStyles = data.instance.popper.style; // assignment to help minification
+  const popperStyles = data.instance.popper.style; // Collaborate to help minification
   const { top, left, [transformProp]: transform } = popperStyles;
   popperStyles.top = '';
   popperStyles.left = '';
